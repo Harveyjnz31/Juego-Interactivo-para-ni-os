@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Prueba de potencia de IA</string>
+    <string name="score_label">Puntaje: %d</string>
+    <string name="star_desc">Estrella de puntaje</string>
+    <string name="footer_text">¡Aprender es divertido!</string>
+</resources>

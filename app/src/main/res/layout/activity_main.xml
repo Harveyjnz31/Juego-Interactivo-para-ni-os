@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_main"
+    tools:context=".MainActivity">
+
+    <!-- Header / Score Section -->
+    <LinearLayout
+        android:id="@+id/headerSection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/btn_rounded"
+        android:backgroundTint="@color/white"
+        android:elevation="4dp"
+        android:orientation="horizontal"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="8dp"
+            android:src="@android:drawable/btn_star_big_on"
+            android:contentDescription="Estrella de puntaje"
+            app:tint="@color/btn_yellow" />
+
+        <TextView
+            android:id="@+id/tvScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Puntaje: 0"
+            android:textColor="@color/text_primary"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Question Card -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvQuestion"
+        android:layout_width="0dp"
+        android:layout_height="240dp"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="40dp"
+        app:cardCornerRadius="32dp"
+        app:cardElevation="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/headerSection"
+        app:strokeColor="@color/primary"
+        app:strokeWidth="2dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white">
+
+            <TextView
+                android:id="@+id/tvOperation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5 + 3"
+                android:textColor="@color/primary"
+                android:textSize="72sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tvEquals"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvEquals"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" = ?"
+                android:textColor="@color/accent"
+                android:textSize="72sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/tvOperation"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tvOperation"
+                app:layout_constraintTop_toTopOf="@id/tvOperation" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Options Grid (Usando el GridLayout estándar de Android para evitar dependencias extra) -->
+    <GridLayout
+        android:id="@+id/glOptions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="40dp"
+        android:columnCount="2"
+        app:layout_constraintTop_toBottomOf="@id/cvQuestion">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnOption1"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_columnWeight="1"
+            android:layout_margin="12dp"
+            android:text="8"
+            android:textAllCaps="false"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            app:cornerRadius="24dp"
+            app:backgroundTint="@color/btn_blue" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnOption2"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_columnWeight="1"
+            android:layout_margin="12dp"
+            android:text="10"
+            android:textAllCaps="false"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            app:cornerRadius="24dp"
+            app:backgroundTint="@color/btn_purple" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnOption3"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_columnWeight="1"
+            android:layout_margin="12dp"
+            android:text="6"
+            android:textAllCaps="false"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            app:cornerRadius="24dp"
+            app:backgroundTint="@color/btn_orange" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnOption4"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_columnWeight="1"
+            android:layout_margin="12dp"
+            android:text="12"
+            android:textAllCaps="false"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            app:cornerRadius="24dp"
+            app:backgroundTint="@color/btn_yellow" />
+
+    </GridLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="¡Aprender es divertido!"
+        android:textColor="@color/text_secondary"
+        android:textSize="16sp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
