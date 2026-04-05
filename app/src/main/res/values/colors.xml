@@ -1,26 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Paleta Moderna y Vibrante para Niños -->
-    <color name="primary">#6C63FF</color> <!-- Indigo Moderno -->
-    <color name="primary_dark">#4B45B2</color>
-    <color name="accent">#FF6584</color> <!-- Rosa Coral -->
+    <!-- Paleta Galaxia Moderna -->
+    <color name="primary">#BB86FC</color> <!-- Violeta Eléctrico -->
+    <color name="primary_dark">#3700B3</color>
+    <color name="indigo_700">#1A237E</color>
+    <color name="accent">#03DAC6</color> <!-- Turquesa Neón -->
 
-    <color name="bg_gradient_start">#F8F9FF</color>
-    <color name="bg_gradient_end">#E0E7FF</color>
+    <color name="bg_galaxy_start">#0F0C29</color> <!-- Negro Azulado -->
+    <color name="bg_galaxy_mid">#302B63</color>   <!-- Púrpura Profundo -->
+    <color name="bg_galaxy_end">#24243E</color>   <!-- Azul Medianoche -->
 
-    <color name="card_bg">#FFFFFF</color>
-    <color name="text_primary">#2D3436</color>
-    <color name="text_secondary">#636E72</color>
+    <color name="card_bg">#1AFFFFFF</color> <!-- Blanco con Transparencia (Glassmorphism) -->
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#B0BEC5</color>
 
-    <color name="success_green">#00B894</color>
-    <color name="error_red">#D63031</color>
+    <color name="success_green">#00E676</color>
+    <color name="error_red">#FF5252</color>
 
     <color name="white">#FFFFFFFF</color>
     <color name="black">#FF000000</color>
 
-    <!-- Botones con sombras y profundidad -->
-    <color name="btn_blue">#0984E3</color>
-    <color name="btn_purple">#6C5CE7</color>
-    <color name="btn_orange">#E17055</color>
-    <color name="btn_yellow">#FDCB6E</color>
+    <!-- Botones Estilo Neón -->
+    <color name="btn_blue">#00D2FF</color>
+    <color name="btn_purple">#9D50BB</color>
+    <color name="btn_orange">#FDC830</color>
+    <color name="btn_yellow">#FF4B2B</color>
 </resources>

@@ -1,9 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="rectangle">
-    <gradient
-        android:angle="135"
-        android:endColor="@color/bg_gradient_end"
-        android:startColor="@color/bg_gradient_start"
-        android:type="linear" />
-</shape>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Gradiente de Nebulosa Galáctica -->
+    <item>
+        <shape>
+            <gradient
+                android:angle="135"
+                android:centerColor="@color/bg_galaxy_mid"
+                android:endColor="@color/bg_galaxy_end"
+                android:startColor="@color/bg_galaxy_start"
+                android:type="linear" />
+        </shape>
+    </item>
+
+    <!-- Estrellas y Puntos Brillantes (Simulados con un patrón) -->
+    <item>
+        <rotate
+            android:fromDegrees="15"
+            android:pivotX="50%"
+            android:pivotY="50%">
+            <shape android:shape="oval">
+                <gradient
+                    android:type="radial"
+                    android:gradientRadius="400dp"
+                    android:startColor="#1AFFFFFF"
+                    android:endColor="#00FFFFFF" />
+            </shape>
+        </rotate>
+    </item>
+</layer-list>

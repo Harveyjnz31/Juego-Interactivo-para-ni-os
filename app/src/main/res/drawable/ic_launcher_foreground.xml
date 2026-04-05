@@ -1,0 +1,29 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Cara del Personaje (Círculo) -->
+    <path
+        android:fillColor="#FFD600"
+        android:pathData="M54,24c-16.57,0-30,13.43-30,30s13.43,30,30,30,30-13.43,30-30-13.43-30-30-30z" />
+    <!-- Ojo Izquierdo -->
+    <path
+        android:fillColor="#2D3436"
+        android:pathData="M44,48m-4,0a4,4 0,1 1,8 0a4,4 0,1 1,-8 0" />
+    <!-- Ojo Derecho -->
+    <path
+        android:fillColor="#2D3436"
+        android:pathData="M64,48m-4,0a4,4 0,1 1,8 0a4,4 0,1 1,-8 0" />
+    <!-- Sonrisa -->
+    <path
+        android:fillColor="#2D3436"
+        android:pathData="M40,60c0,0,5,8,14,8s14-8,14-8c0,0-5,4-14,4s-14-4-14-4z" />
+    <!-- Gorrito de Graduado (Simbolizando Inteligencia) -->
+    <path
+        android:fillColor="#6C63FF"
+        android:pathData="M54,20l15,8l-15,8l-15-8z" />
+    <path
+        android:fillColor="#4B45B2"
+        android:pathData="M42,29v5c0,0,5,3,12,3s12-3,12-3v-5" />
+</vector>

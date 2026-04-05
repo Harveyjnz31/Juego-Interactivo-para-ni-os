@@ -6,6 +6,8 @@ import android.media.ToneGenerator
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -23,11 +25,17 @@ class MainActivity : AppCompatActivity() {
     private lateinit var tvOperation: TextView
     private lateinit var btnOptions: List<MaterialButton>
     private lateinit var konfettiView: KonfettiView
+    
+    private lateinit var levelOverlay: View
+    private lateinit var tvLevelAnnouncement: TextView
+    private lateinit var tvLevelSubtext: TextView
+    private lateinit var ivTrophy: ImageView
 
     private var score = 0
     private var correctAnswer = 0
     private var selectedDifficulty = "EASY"
     private var streak = 0
+    private var currentLevel = 1
 
     private val toneGenerator = ToneGenerator(AudioManager.STREAM_MUSIC, 100)
 
@@ -53,10 +61,36 @@ class MainActivity : AppCompatActivity() {
             findViewById(R.id.btnOption4)
         )
         konfettiView = findViewById(R.id.konfettiView)
+        levelOverlay = findViewById(R.id.levelOverlay)
+        tvLevelAnnouncement = findViewById(R.id.tvLevelAnnouncement)
+        tvLevelSubtext = findViewById(R.id.tvLevelSubtext)
+        ivTrophy = findViewById(R.id.ivTrophy)
 
         selectedDifficulty = intent.getStringExtra("DIFFICULTY_LEVEL") ?: "EASY"
 
-        setupGame()
+        showLevelAnnouncement(1, false)
+    }
+
+    private fun showLevelAnnouncement(level: Int, isLevelUp: Boolean) {
+        levelOverlay.visibility = View.VISIBLE
+        ivTrophy.visibility = if (isLevelUp) View.VISIBLE else View.GONE
+        
+        tvLevelAnnouncement.text = if (isLevelUp) "¡NIVEL COMPLETADO!" else "¡NIVEL $level!"
+        tvLevelSubtext.text = if (isLevelUp) "¡Eres un genio! Siguiente nivel..." else "¡Prepárate para la Misión!"
+
+        if (isLevelUp) {
+            triggerConfetti()
+            toneGenerator.startTone(ToneGenerator.TONE_DTMF_0, 200)
+            Handler(Looper.getMainLooper()).postDelayed({
+                toneGenerator.startTone(ToneGenerator.TONE_DTMF_4, 200)
+                toneGenerator.startTone(ToneGenerator.TONE_DTMF_7, 400)
+            }, 200)
+        }
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            levelOverlay.visibility = View.GONE
+            setupGame()
+        }, if (isLevelUp) 3000 else 2000)
     }
 
     private fun setupGame() {
@@ -138,15 +172,36 @@ class MainActivity : AppCompatActivity() {
             streak++
             tvScore.text = getString(R.string.score_label, score)
             button.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.success_green))
-            toneGenerator.startTone(ToneGenerator.TONE_PROP_BEEP, 150)
+            
+            // Sonido de acierto (Doble tono alegre)
+            toneGenerator.startTone(ToneGenerator.TONE_DTMF_1, 100)
+            Handler(Looper.getMainLooper()).postDelayed({
+                toneGenerator.startTone(ToneGenerator.TONE_DTMF_5, 100)
+            }, 100)
+
+            // Lógica de subir nivel cada 10 puntos
+            if (score > 0 && score % 10 == 0) {
+                currentLevel++
+                Handler(Looper.getMainLooper()).postDelayed({
+                    showLevelAnnouncement(currentLevel, true)
+                }, 1000)
+                return // Detenemos el flujo normal de setupGame()
+            }
 
             if (streak % 5 == 0) {
                 triggerConfetti()
+                // Sonido especial de racha
+                Handler(Looper.getMainLooper()).postDelayed({
+                    toneGenerator.startTone(ToneGenerator.TONE_PROP_PROMPT, 300)
+                }, 200)
             }
         } else {
             streak = 0
             button.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.error_red))
-            toneGenerator.startTone(ToneGenerator.TONE_PROP_NACK, 200)
+            
+            // Sonido de error (Tono grave y largo)
+            toneGenerator.startTone(ToneGenerator.TONE_CDMA_SOFT_ERROR_LITE, 300)
+
             btnOptions.find { it.text == correctAnswer.toString() }?.let { correctBtn ->
                 correctBtn.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.success_green))
             }
